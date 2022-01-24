@@ -1,0 +1,22 @@
+{
+  "name": "nodejscompletebootcamp",
+  "version": "1.0.0",
+  "description": "NodeJS Express MongoDB & More The Complete Bootcamp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrAK-dev/NodeJSCompleteBootcamp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MrAK-dev/NodeJSCompleteBootcamp/issues"
+  },
+  "homepage": "https://github.com/MrAK-dev/NodeJSCompleteBootcamp#readme",
+  "dependencies": {
+    "superagent": "^7.1.1"
+  }
+}
