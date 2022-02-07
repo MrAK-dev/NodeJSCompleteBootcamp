@@ -64,7 +64,6 @@ const sendErrorProd = (error, request, response) => {
   // B) RENDERED WEBSITE
   // A) Operational, trusted error: send message to client
   if (error.isOperational) {
-    console.log(error);
     return response.status(error.statusCode).render('error', {
       title: 'Something went wrong!',
       msg: error.message,
