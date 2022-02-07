@@ -1,4 +1,4 @@
-/*eslint-disable */
+/* eslint-disable */
 import '@babel/polyfill';
 import { displayMap } from './mapbox';
 import { login, logout } from './login';
