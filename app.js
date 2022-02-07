@@ -13,12 +13,14 @@ const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
+const bookingRouter = require('./routes/bookingRoutes');
 const viewRouter = require('./routes/viewRouters');
 
 const app = express();
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
+
 // 1) GLOBAL MIDDLEWARES
 
 // Serving static files
@@ -43,6 +45,12 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP, please try again in an hour',
 });
 app.use('/api', limiter);
+
+app.use((req, res, next) => {
+  res.removeHeader('Cross-Origin-Resource-Policy');
+  res.removeHeader('Cross-Origin-Embedder-Policy');
+  next();
+});
 
 // Body parser, rading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
@@ -77,7 +85,7 @@ app.use(
 // Test middleware
 app.use((request, response, next) => {
   request.requestTime = new Date().toISOString();
-  console.log(request.cookies);
+  // console.log(request.cookies);
   next();
 });
 
@@ -87,6 +95,7 @@ app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
+app.use('/api/v1/bookings', bookingRouter);
 
 app.all('*', (request, response, next) => {
   next(new AppError(`Can't find ${request.originalUrl} on this server!`, 404));
